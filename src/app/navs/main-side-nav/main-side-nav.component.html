@@ -1,0 +1,9 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="over" [(opened)]="opened" (opened)="events.push('open!')"
+               (closed)="events.push('close!')">
+    Sidenav content
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-group-side-nav></app-group-side-nav>
+  </mat-sidenav-content>
+</mat-sidenav-container>

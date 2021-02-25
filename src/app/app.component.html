@@ -299,26 +299,4 @@
 </style> -->
 
 <!--Toolbar-->
-  <mat-toolbar color='primary' class="toolbar">
-   <button mat-icon-button>
-    <mat-icon>menu</mat-icon>
-  </button>
-  <img
-    width="40"
-    alt="Taskie Logo"
-    src="../faviconTaskie.png"
-  />
-  <span class="spacer"></span>
-  <span>{{title}}</span>
-  <span class="spacer"></span>
-  <mat-form-field appearance="fill">
-    <mat-select [(value)]="taskieFilterSelected">
-      <mat-option value="merged">Merged
-      </mat-option>
-      <mat-option *ngFor="let item of groups" value="item.groupType"> {{item.groupName}}
-        <button mat-raised-button color="accent">+</button>
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-</mat-toolbar>
-<router-outlet></router-outlet>
+ <app-toolbar></app-toolbar>
