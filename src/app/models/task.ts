@@ -1,12 +1,10 @@
-import { IGroup } from "./group";
+import { IGroup } from './group';
 
 export interface IGroupTask {
   id: number;
   groupId: number;
-  group: IGroup;
   taskId: number;
-  task: ITask;
-  claimingUserId?:number;
+  claimingUserId?: number;
   creatingUserid: number;
   creatingUserReviewClosed: boolean;
   archive: boolean;
@@ -37,7 +35,7 @@ export interface ITask {
   aggraCount: number;
 }
 
-export interface ITaskHistory{
+export interface ITaskHistory {
   id: number;
   taskId: number;
   historyTypeId: number;
@@ -49,7 +47,7 @@ export interface ITaskHistory{
   historyChangeMicroText: string;
 }
 
-export interface IAttachment{
+export interface IAttachment {
   id: number;
   taskId: number;
   attachementItemName: string;
@@ -65,13 +63,11 @@ export interface ITaskTemplate {
   subTasks: ITaskTemplateChild[];
 }
 
-export interface ITaskTemplateChild{
+export interface ITaskTemplateChild {
   id: number;
   name: string;
   taskTemplateId: number;
-  taskTemplate: ITaskTemplate
+  taskTemplate: ITaskTemplate;
   taskId: number;
   task: ITask;
 }
-
-
