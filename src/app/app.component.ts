@@ -10,6 +10,8 @@ export class AppComponent {
   taskieFilterSelected = 'all';
   taskPanelOpenState = true;
   focusedTaskName = "Create Dashboard Page"
+  priority = "tasklist"
+  priorityLevel = "top"
   displayedColumns = ['position', 'name', 'type', 'status'];
   dataSource = TASK_DATA;
 }
