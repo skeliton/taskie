@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { IGroup, IGroupUser, IUser } from '../models/group';
 import { IGroupTask } from '../models/task';
 
+// insert nums cntl+alt+n
+//duplicate line ctnl+alt + up/down arrow
+//row edit shift+alt+ up/down arrow
+
 @Injectable({
   providedIn: 'root',
 })
@@ -127,6 +131,10 @@ export class TestDataService {
       },
     ];
   }
+
+  // insert nums cntl+alt+n
+  //duplicate line ctnl+alt + up/down arrow
+  //row edit shift+alt+ up/down arrow
 
   //   getTasks(): ITask[] {
   //     return [
