@@ -1,31 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { IGroup, IGroupUser, IUser } from './models/group';
+import { LoggerService } from './services/logger.service';
+import { UserGroupService } from './services/user-group.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Taskie';
-  taskieFilterSelected = 'all';
-  taskPanelOpenState = true;
-  focusedTaskName = "Create Dashboard Page"
-  priority = "tasklist"
-  priorityLevel = "top"
-  displayedColumns = ['position', 'name', 'type', 'status'];
-  dataSource = TASK_DATA;
-}
+  taskieFilterSelected = 'merged';
+  userId = 1;
+  user!: IUser;
+  groupUser!: IGroupUser[];
+  groups!: IGroup[];
 
-export interface TaskieTask {
-  name: string;
-  position: number;
-  type: string;
-  status: string;
-}
+  constructor(
+    private userGroupService: UserGroupService,
+    private loggerService: LoggerService
+  ) {}
 
-const TASK_DATA: TaskieTask[] = [
-  {position: 1, name: 'Create Dashboard Page', type: 'Personal', status: 'InProcess'},
-  {position: 2, name: 'Create Focused Task Utility', type: 'Personal', status: 'InProcess'},
-  {position: 3, name: 'Create Task Grid', type: 'Personal', status: 'InProcess'},
-  {position: 3, name: 'Create Backlog Grid', type: 'Personal', status: 'InProcess'},
-];
+  ngOnInit(): void {
+    this.loggerService.log('onInit');
+    this.user = this.userGroupService.getUserById(this.userId);
+    this.groups = this.userGroupService.getGroupsByUserId(this.userId);
+  }
+}

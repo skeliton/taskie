@@ -313,13 +313,10 @@
   <span class="spacer"></span>
   <mat-form-field appearance="fill">
     <mat-select [(value)]="taskieFilterSelected">
-      <mat-option value="all">Merged
+      <mat-option value="merged">Merged
       </mat-option>
-      <mat-option value="personal">Personal
-        <button mat-raised-button color="accent">Add</button>
-      </mat-option>
-      <mat-option value="team">Team
-        <button mat-raised-button color="accent">Add</button>
+      <mat-option *ngFor="let item of groups" value="item.groupType"> {{item.groupName}}
+        <button mat-raised-button color="accent">+</button>
       </mat-option>
     </mat-select>
   </mat-form-field>
