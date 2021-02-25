@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IGroup, IGroupUser, IUser } from '../models/group';
-import { IGroupTask } from '../models/task';
+import { IGroupTask, ITask } from '../models/task';
 
 // insert nums cntl+alt+n
 //duplicate line ctnl+alt + up/down arrow
@@ -136,45 +136,220 @@ export class TestDataService {
   //duplicate line ctnl+alt + up/down arrow
   //row edit shift+alt+ up/down arrow
 
-  //   getTasks(): ITask[] {
-  //     return [
-  //       { id: 1, groupId: 1, taskId:1, claimingUserId: 1, creatingUserid: 1, creatingUserReviewClosed: false, archive: false },
-  //       { id: 2, groupId: 2, taskId:2, claimingUserId: 1, creatingUserid: 2, creatingUserReviewClosed: false, archive: false },
-  //       { id: 3, groupId: 1, taskId:3, claimingUserId: 1, creatingUserid: 1, creatingUserReviewClosed: false, archive: false },
-  //       { id: 4, groupId: 1, taskId:4, claimingUserId: 1, creatingUserid: 1, creatingUserReviewClosed: false, archive: false },
-  //       { id: 5, groupId: 4, taskId:5, claimingUserId: 1, creatingUserid: 1, creatingUserReviewClosed: true, archive: false },
-  //       { id: 6, groupId: 4, taskId:6, claimingUserId: 1, creatingUserid: 1, creatingUserReviewClosed: false, archive: false },
-  //       { id: 7, groupId: 5, taskId:7, claimingUserId: 1, creatingUserid: 1, creatingUserReviewClosed: false, archive: false },
-  //       { id: 8, groupId: 5, taskId:8, claimingUserId: 1, creatingUserid: 1, creatingUserReviewClosed: false, archive: false },
-  //       { id: 9, groupId: 5, taskId:9, claimingUserId: 1, creatingUserid: 1, creatingUserReviewClosed: false, archive: false },
-
-  //     ];
-  //   }
-
-  // export interface ITask {
-  //   id: number;
-  //   name: string;
-  //   details: string;
-  //   originalPriority: string;
-  //   originalPosition: string;
-  //   currentPriority: string;
-  //   currentPosition: number;
-  //   currentPositionOrder: number;
-  //   taskHistory: ITaskHistory[];
-  //   notes: string;
-  //   taskTemplate: ITaskTemplate;
-  //   taskCompleted: boolean;
-  //   finalResponse: string;
-  //   qaTaskTemplate: ITaskTemplate;
-  //   taskAttachements: IAttachment[];
-  //   taskWorkAttachments: IAttachment[];
-  //   repeatTask: boolean;
-  //   repeatDuration: string;
-  //   flowDefinitionId: number;
-  //   flowRun: boolean;
-  //   aggraTask: boolean;
-  //   aggraCount: number;
-  // }
+  getTasks(): ITask[] {
+    return [
+      {
+        id: 1,
+        name: '',
+        details: '',
+        originalPosition: '',
+        originalPriority: '',
+        currentPriority: '',
+        currentPosition: 5,
+        currentPositionOrder: 0,
+        notes: '',
+        taskTemplateId: undefined,
+        taskCompleted: false,
+        finalResponse: '',
+        qnaTaskTemplateId: undefined,
+        repeatTask: false,
+        repeatDuration: '',
+        flowDefinitionId: undefined,
+        flowRun: false,
+        aggraTask: false,
+        aggraCount: 0,
+      },
+      {
+        id: 1,
+        name: '',
+        details: '',
+        originalPosition: '',
+        originalPriority: '',
+        currentPriority: '',
+        currentPosition: 5,
+        currentPositionOrder: 1,
+        notes: '',
+        taskTemplateId: undefined,
+        taskCompleted: false,
+        finalResponse: '',
+        qnaTaskTemplateId: undefined,
+        repeatTask: false,
+        repeatDuration: '',
+        flowDefinitionId: undefined,
+        flowRun: false,
+        aggraTask: false,
+        aggraCount: 0,
+      },
+      {
+        id: 2,
+        name: '',
+        details: '',
+        originalPosition: '',
+        originalPriority: '',
+        currentPriority: '',
+        currentPosition: 5,
+        currentPositionOrder: 2,
+        notes: '',
+        taskTemplateId: undefined,
+        taskCompleted: false,
+        finalResponse: '',
+        qnaTaskTemplateId: undefined,
+        repeatTask: false,
+        repeatDuration: '',
+        flowDefinitionId: undefined,
+        flowRun: false,
+        aggraTask: false,
+        aggraCount: 0,
+      },
+      {
+        id: 3,
+        name: '',
+        details: '',
+        originalPosition: '',
+        originalPriority: '',
+        currentPriority: '',
+        currentPosition: 5,
+        currentPositionOrder: 3,
+        notes: '',
+        taskTemplateId: undefined,
+        taskCompleted: false,
+        finalResponse: '',
+        qnaTaskTemplateId: undefined,
+        repeatTask: false,
+        repeatDuration: '',
+        flowDefinitionId: undefined,
+        flowRun: false,
+        aggraTask: false,
+        aggraCount: 0,
+      },
+      {
+        id: 4,
+        name: '',
+        details: '',
+        originalPosition: '',
+        originalPriority: '',
+        currentPriority: '',
+        currentPosition: 5,
+        currentPositionOrder: 4,
+        notes: '',
+        taskTemplateId: undefined,
+        taskCompleted: false,
+        finalResponse: '',
+        qnaTaskTemplateId: undefined,
+        repeatTask: false,
+        repeatDuration: '',
+        flowDefinitionId: undefined,
+        flowRun: false,
+        aggraTask: false,
+        aggraCount: 0,
+      },
+      {
+        id: 5,
+        name: '',
+        details: '',
+        originalPosition: '',
+        originalPriority: '',
+        currentPriority: '',
+        currentPosition: 5,
+        currentPositionOrder: 5,
+        notes: '',
+        taskTemplateId: undefined,
+        taskCompleted: false,
+        finalResponse: '',
+        qnaTaskTemplateId: undefined,
+        repeatTask: false,
+        repeatDuration: '',
+        flowDefinitionId: undefined,
+        flowRun: false,
+        aggraTask: false,
+        aggraCount: 0,
+      },
+      {
+        id: 6,
+        name: '',
+        details: '',
+        originalPosition: '',
+        originalPriority: '',
+        currentPriority: '',
+        currentPosition: 5,
+        currentPositionOrder: 6,
+        notes: '',
+        taskTemplateId: undefined,
+        taskCompleted: false,
+        finalResponse: '',
+        qnaTaskTemplateId: undefined,
+        repeatTask: false,
+        repeatDuration: '',
+        flowDefinitionId: undefined,
+        flowRun: false,
+        aggraTask: false,
+        aggraCount: 0,
+      },
+      {
+        id: 7,
+        name: '',
+        details: '',
+        originalPosition: '',
+        originalPriority: '',
+        currentPriority: '',
+        currentPosition: 5,
+        currentPositionOrder: 7,
+        notes: '',
+        taskTemplateId: undefined,
+        taskCompleted: false,
+        finalResponse: '',
+        qnaTaskTemplateId: undefined,
+        repeatTask: false,
+        repeatDuration: '',
+        flowDefinitionId: undefined,
+        flowRun: false,
+        aggraTask: false,
+        aggraCount: 0,
+      },
+      {
+        id: 8,
+        name: '',
+        details: '',
+        originalPosition: '',
+        originalPriority: '',
+        currentPriority: '',
+        currentPosition: 5,
+        currentPositionOrder: 8,
+        notes: '',
+        taskTemplateId: undefined,
+        taskCompleted: false,
+        finalResponse: '',
+        qnaTaskTemplateId: undefined,
+        repeatTask: false,
+        repeatDuration: '',
+        flowDefinitionId: undefined,
+        flowRun: false,
+        aggraTask: false,
+        aggraCount: 0,
+      },
+      {
+        id: 9,
+        name: '',
+        details: '',
+        originalPosition: '',
+        originalPriority: '',
+        currentPriority: '',
+        currentPosition: 5,
+        currentPositionOrder: 9,
+        notes: '',
+        taskTemplateId: undefined,
+        taskCompleted: false,
+        finalResponse: '',
+        qnaTaskTemplateId: undefined,
+        repeatTask: false,
+        repeatDuration: '',
+        flowDefinitionId: undefined,
+        flowRun: false,
+        aggraTask: false,
+        aggraCount: 0,
+      },
+    ];
+  }
 
   // export interface ITaskHistory{
   //   id: number;
