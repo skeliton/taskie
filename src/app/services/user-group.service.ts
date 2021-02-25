@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { IGroup, IGroupUser, IUser } from '../models/group';
-import { groups, groupUsers, users } from '../models/tempdata';
 import { LoggerService } from './logger.service';
+import { TestDataService } from './test-data.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserGroupService {
-  constructor(private loggerService: LoggerService) {}
+  constructor(
+    private loggerService: LoggerService,
+    private testDataService: TestDataService
+  ) {}
 
   getUserById(id: number): IUser {
-    let user = users.find((x) => {
+    let user = this.testDataService.getUsers().find((x) => {
       return x.id === id;
     });
     if (user === undefined) {
@@ -22,23 +26,23 @@ export class UserGroupService {
   }
 
   getGroupById(id: number): IGroup | undefined {
-    return groups.find((x) => {
+    return this.testDataService.getGroups().find((x) => {
       return x.id === id;
     });
   }
 
   getUserGroupsByUserId(userId: number): IGroupUser[] {
-    return groupUsers.filter((x) => x.userId === userId);
+    return this.testDataService
+      .getGroupUsers()
+      .filter((x) => x.userId === userId);
   }
 
   getGroupsByUserId(userId: number): IGroup[] {
     let groups: IGroup[] = new Array();
-    groupUsers
-      .filter((x) => x.userId === userId)
-      .forEach((x) => {
-        let group = this.getGroupById(x.groupId);
-        if (group !== undefined) groups.push(group);
-      });
+    this.getUserGroupsByUserId(userId).forEach((x) => {
+      let group = this.getGroupById(x.groupId);
+      if (group !== undefined) groups.push(group);
+    });
     return groups;
   }
 }
