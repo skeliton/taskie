@@ -33,6 +33,8 @@ export interface ITask {
   repeatDuration: string;
   flowDefinitionId: number;
   flowRun: boolean;
+  aggraTask: boolean;
+  aggraCount: number;
 }
 
 export interface ITaskHistory{

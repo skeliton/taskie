@@ -1,0 +1,356 @@
+<!--Main Content-->
+<div class="main-container">
+<!--Dashboard-->
+<div class="">
+ <mat-accordion>
+   <mat-expansion-panel [expanded]= "taskPanelOpenState" (opened)="taskPanelOpenState = true"
+                        (closed)="taskPanelOpenState = false">
+     <mat-expansion-panel-header>
+       <mat-panel-title>
+         Current Task: {{focusedTaskName}}
+       </mat-panel-title>
+       <mat-panel-description>
+         {{taskPanelOpenState ? 'Save' : 'Open'}}
+       </mat-panel-description>
+     </mat-expansion-panel-header>
+     <!--Task Tabs-->
+     <mat-tab-group mat-align-tabs="center">
+       <mat-tab class="" label="Overview">
+         <div class="sub-container">
+         <!--Overview Tab-->
+           <div class="box">
+             <mat-form-field appearance="fill">
+               <mat-label>Task Name</mat-label>
+               <input matInput [value] = focusedTaskName>
+             </mat-form-field>
+           </div>
+           <div class="box">
+             <mat-form-field appearance="fill">
+               <mat-label>Type</mat-label>
+               <mat-select>
+                 <mat-option value="personal">Personal</mat-option>
+                 <mat-option value="team">Team</mat-option>
+               </mat-select>
+             </mat-form-field>
+           </div>
+           <div class="box">
+             <mat-form-field appearance="fill">
+               <mat-label>Sub Type</mat-label>
+               <mat-select>
+                 <mat-option value="team1">Family</mat-option>
+                 <mat-option value="team2">Work Team</mat-option>
+               </mat-select>
+             </mat-form-field>
+           </div>
+           <div class="box">
+             <mat-form-field appearance="fill">
+               <mat-label>Assignee</mat-label>
+               <mat-select>
+                 <mat-option value="dan">Dan</mat-option>
+                 <mat-option value="heidi">Heidi</mat-option>
+               </mat-select>
+             </mat-form-field>
+           </div>
+           <section class="example-section">
+             <label class="example-margin">Priority:</label>
+             <mat-radio-group [(ngModel)]="priority">
+               <mat-radio-button class="example-margin" value="tasklist">Task List</mat-radio-button>
+               <mat-radio-button class="example-margin" value="backlog">Backlog</mat-radio-button>
+             </mat-radio-group>
+           </section>
+           <section class="example-section">
+             <label class="example-margin">Position:</label>
+             <mat-radio-group [(ngModel)]="priorityLevel">
+               <mat-radio-button class="example-margin" value="top">Top</mat-radio-button>
+               <mat-radio-button class="example-margin" value="mid">Mid</mat-radio-button>
+               <mat-radio-button class="example-margin" value="bottom">Bottom</mat-radio-button>
+             </mat-radio-group>
+           </section>
+           <div class="text-box">
+             <mat-form-field appearance="fill">
+               <mat-label>Details</mat-label>
+               <textarea matInput></textarea>
+             </mat-form-field>
+           </div>
+           <mat-card class="example-card">
+             <mat-card-header>
+               <div mat-card-avatar class="example-header-image"></div>
+               <mat-card-title>Attachments</mat-card-title>
+             </mat-card-header>
+                 <mat-card-content>
+                   <div class="container mat-elevation-z5">
+                     <table mat-table [dataSource]="dataSource">
+
+                       <!-- Position Column -->
+                       <ng-container matColumnDef="position">
+                         <th mat-header-cell *matHeaderCellDef> No. </th>
+                         <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                       </ng-container>
+
+                       <!-- Name Column -->
+                       <ng-container matColumnDef="name">
+                         <th mat-header-cell *matHeaderCellDef> Name </th>
+                         <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                       </ng-container>
+
+                       <!-- Weight Column -->
+                       <ng-container matColumnDef="type">
+                         <th mat-header-cell *matHeaderCellDef> Type </th>
+                         <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+                       </ng-container>
+
+                       <!-- Symbol Column -->
+                       <ng-container matColumnDef="status">
+                         <th mat-header-cell *matHeaderCellDef> Status </th>
+                         <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                       </ng-container>
+
+                       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                     </table>
+                   </div>
+             </mat-card-content>
+           </mat-card>
+         </div>
+       </mat-tab>
+       <mat-tab label="Work">
+         <div class="box">
+           <mat-form-field appearance="fill">
+             <mat-label>Forward Type</mat-label>
+             <mat-select>
+               <mat-option value="personal">Personal</mat-option>
+               <mat-option value="team">Team</mat-option>
+             </mat-select>
+           </mat-form-field>
+         </div>
+         <div class="box">
+           <mat-form-field appearance="fill">
+             <mat-label>Forward Sub Type</mat-label>
+             <mat-select>
+               <mat-option value="team1">Family</mat-option>
+               <mat-option value="team2">Work Team</mat-option>
+             </mat-select>
+           </mat-form-field>
+         </div>
+         <div class="box">
+           <mat-form-field appearance="fill">
+             <mat-label>Forward Assignee</mat-label>
+             <mat-select>
+               <mat-option value="dan">Dan</mat-option>
+               <mat-option value="heidi">Heidi</mat-option>
+             </mat-select>
+           </mat-form-field>
+         </div>
+         <div class="example-button-row">
+           <button mat-raised-button color="primary">Claim</button>
+           <button mat-raised-button color="accent">Forward</button>
+         </div>
+         <div class="box">
+           <mat-form-field appearance="fill">
+             <mat-label>Task Type</mat-label>
+             <mat-select>
+               <mat-option value="personal">New</mat-option>
+               <mat-option value="team">Development</mat-option>
+             </mat-select>
+           </mat-form-field>
+         </div>
+         <div class="box">
+           <mat-form-field appearance="fill">
+             <mat-label>Task Sub Type</mat-label>
+             <mat-select>
+               <mat-option value="team1">New</mat-option>
+               <mat-option value="team2">Add New Feature</mat-option>
+             </mat-select>
+           </mat-form-field>
+         </div>
+         <div class="box">
+           <mat-form-field appearance="fill">
+             <mat-label>Q&A Type</mat-label>
+             <mat-select>
+               <mat-option value="personal">Personal</mat-option>
+               <mat-option value="team">Team</mat-option>
+             </mat-select>
+           </mat-form-field>
+         </div>
+         <div class="box">
+           <mat-form-field appearance="fill">
+             <mat-label>Q&A Sub Type</mat-label>
+             <mat-select>
+               <mat-option value="team1">Family</mat-option>
+               <mat-option value="team2">Work Team</mat-option>
+             </mat-select>
+           </mat-form-field>
+         </div>
+         <div class="box">
+           <mat-form-field appearance="fill">
+             <mat-label>Q&A Assignee</mat-label>
+             <mat-select>
+               <mat-option value="dan">Dan</mat-option>
+               <mat-option value="heidi">Heidi</mat-option>
+             </mat-select>
+           </mat-form-field>
+         </div>
+         <mat-form-field appearance="fill">
+           <mat-label>Q&A Field</mat-label>
+           <textarea matInput></textarea>
+         </mat-form-field>
+         <div class="example-button-row">
+           <button mat-raised-button color="primary">Ask</button>
+           <button mat-raised-button color="accent">Clear</button>
+         </div>
+
+
+         <mat-card class="example-card">
+           <mat-card-header>
+             <div mat-card-avatar class="example-header-image"></div>
+             <mat-card-title>Sub Tasks</mat-card-title>
+           </mat-card-header>
+               <mat-card-content>
+                 <div class="container mat-elevation-z5">
+                   <table mat-table [dataSource]="dataSource">
+
+                     <!-- Position Column -->
+                     <ng-container matColumnDef="position">
+                       <th mat-header-cell *matHeaderCellDef> No. </th>
+                       <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                     </ng-container>
+
+                     <!-- Name Column -->
+                     <ng-container matColumnDef="name">
+                       <th mat-header-cell *matHeaderCellDef> Name </th>
+                       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                     </ng-container>
+
+                     <!-- Weight Column -->
+                     <ng-container matColumnDef="type">
+                       <th mat-header-cell *matHeaderCellDef> Type </th>
+                       <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+                     </ng-container>
+
+                     <!-- Symbol Column -->
+                     <ng-container matColumnDef="status">
+                       <th mat-header-cell *matHeaderCellDef> Status </th>
+                       <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                     </ng-container>
+
+                     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                   </table>
+                 </div>
+           </mat-card-content>
+         </mat-card>
+         <mat-form-field appearance="fill">
+           <mat-label>Notes</mat-label>
+           <textarea matInput></textarea>
+         </mat-form-field>
+         <mat-card class="example-card">
+           <mat-card-header>
+             <div mat-card-avatar class="example-header-image"></div>
+             <mat-card-title>History</mat-card-title>
+           </mat-card-header>
+               <mat-card-content>
+                 <div class="container mat-elevation-z5">
+                   <table mat-table [dataSource]="dataSource">
+
+                     <!-- Position Column -->
+                     <ng-container matColumnDef="position">
+                       <th mat-header-cell *matHeaderCellDef> No. </th>
+                       <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                     </ng-container>
+
+                     <!-- Name Column -->
+                     <ng-container matColumnDef="name">
+                       <th mat-header-cell *matHeaderCellDef> Name </th>
+                       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                     </ng-container>
+
+                     <!-- Weight Column -->
+                     <ng-container matColumnDef="type">
+                       <th mat-header-cell *matHeaderCellDef> Type </th>
+                       <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+                     </ng-container>
+
+                     <!-- Symbol Column -->
+                     <ng-container matColumnDef="status">
+                       <th mat-header-cell *matHeaderCellDef> Status </th>
+                       <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                     </ng-container>
+
+                     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                   </table>
+                 </div>
+           </mat-card-content>
+         </mat-card>
+       </mat-tab>
+       <!--Options-->
+       <mat-tab label="Options">
+         <div class="example-button-row">
+           <button mat-raised-button color="primary">Create New</button>
+           <button mat-raised-button color="accent">Clone</button>
+         </div>
+         <div class="box">
+           <mat-form-field appearance="fill">
+             <mat-label>Task Type</mat-label>
+             <mat-select>
+               <mat-option value="personal">New</mat-option>
+               <mat-option value="team">Development</mat-option>
+             </mat-select>
+           </mat-form-field>
+         </div>
+         <div class="box">
+           <mat-form-field appearance="fill">
+             <mat-label>Task Sub Type</mat-label>
+             <mat-select>
+               <mat-option value="team1">New</mat-option>
+               <mat-option value="team2">Add New Feature</mat-option>
+             </mat-select>
+           </mat-form-field>
+         </div>
+       </mat-tab>
+     </mat-tab-group>
+   </mat-expansion-panel>
+ </mat-accordion>
+</div>
+ <!-- Task List -->
+<div class="container">
+ <mat-card class="example-card">
+   <mat-card-header>
+     <div mat-card-avatar class="example-header-image"></div>
+     <mat-card-title>Task Listing</mat-card-title>
+   </mat-card-header>
+       <mat-card-content>
+         <div class="container mat-elevation-z5">
+           <table mat-table [dataSource]="dataSource">
+
+             <!-- Position Column -->
+             <ng-container matColumnDef="position">
+               <th mat-header-cell *matHeaderCellDef> No. </th>
+               <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+             </ng-container>
+
+             <!-- Name Column -->
+             <ng-container matColumnDef="name">
+               <th mat-header-cell *matHeaderCellDef> Name </th>
+               <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+             </ng-container>
+
+             <!-- Weight Column -->
+             <ng-container matColumnDef="type">
+               <th mat-header-cell *matHeaderCellDef> Type </th>
+               <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+             </ng-container>
+
+             <!-- Symbol Column -->
+             <ng-container matColumnDef="status">
+               <th mat-header-cell *matHeaderCellDef> Status </th>
+               <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+             </ng-container>
+
+             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+           </table>
+         </div>
+   </mat-card-content>
+ </mat-card>
+</div>
