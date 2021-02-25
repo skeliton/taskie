@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainSideNavComponent implements OnInit {
   events: string[] = [];
-  opened: boolean = true;
+  opened: boolean = false;
 
   constructor() {}
 

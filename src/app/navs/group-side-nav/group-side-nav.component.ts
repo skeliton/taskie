@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./group-side-nav.component.scss'],
 })
 export class GroupSideNavComponent implements OnInit {
-  opened: boolean = true;
+  opened: boolean = false;
 
   constructor() {}
 
