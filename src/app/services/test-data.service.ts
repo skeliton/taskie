@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
 import { IGroup, IGroupUser, IUser } from '../models/group';
-import { IGroupTask, ITask } from '../models/task';
+import {
+  IAttachment,
+  IGroupTask,
+  ITask,
+  ITaskHistory,
+  ITaskTemplate,
+  ITaskTemplateChild,
+} from '../models/task';
 
 // insert nums cntl+alt+n
 //duplicate line ctnl+alt + up/down arrow
@@ -28,6 +35,7 @@ export class TestDataService {
       { id: 3, groupName: 'Personal', groupType: 'personal', ownerUserId: 3 },
       { id: 4, groupName: 'Family', groupType: 'team', ownerUserId: 1 },
       { id: 5, groupName: 'Waukee Schools', groupType: 'org', ownerUserId: 1 },
+      { id: 6, groupName: 'Full Family', groupType: 'org', ownerUserId: 1 },
     ];
   }
 
@@ -42,6 +50,7 @@ export class TestDataService {
       { id: 7, groupId: 5, userId: 1 },
       { id: 8, groupId: 5, userId: 2 },
       { id: 9, groupId: 5, userId: 3 },
+      { id: 10, groupId: 1, userId: 1 },
     ];
   }
 
@@ -131,10 +140,6 @@ export class TestDataService {
       },
     ];
   }
-
-  // insert nums cntl+alt+n
-  //duplicate line ctnl+alt + up/down arrow
-  //row edit shift+alt+ up/down arrow
 
   getTasks(): ITask[] {
     return [
@@ -351,40 +356,210 @@ export class TestDataService {
     ];
   }
 
-  // export interface ITaskHistory{
-  //   id: number;
-  //   taskId: number;
-  //   historyTypeId: number;
-  //   historyTypeName: string;
-  //   historyChangeText: string;
-  //   historyChangeDeciText: string;
-  //   historyChangeCentiText: string;
-  //   historyChangeMilleText: string;
-  //   historyChangeMicroText: string;
-  // }
+  //insert nums cntl+alt+n
+  //duplicate line shift+alt + up/down arrow
+  //row edit cntl+alt+ up/down arrow
+  //clipboard history: cntl+shift+V
 
-  // export interface IAttachment{
-  //   id: number;
-  //   taskId: number;
-  //   attachementItemName: string;
-  //   attachementItem: any;
-  // }
+  getTaskHistory(): ITaskHistory[] {
+    return [
+      {
+        id: 1,
+        taskId: 0,
+        historyTypeId: 1,
+        historyTypeName: 'Fwd',
+        historyChangeText: 'Fwd1 > Fwd2',
+        historyChangeDeciText: 'Fwd2 > Fwd3',
+        historyChangeCentiText: 'Fwdd3 > Fwd4',
+        historyChangeMilleText: 'Fwd4 > Fwd5',
+        historyChangeMicroText: 'Fwd5 > Fwd6',
+      },
+      {
+        id: 1,
+        taskId: 1,
+        historyTypeId: 1,
+        historyTypeName: 'Fwd',
+        historyChangeText: 'Fwd1 > Fwd2',
+        historyChangeDeciText: 'Fwd2 > Fwd3',
+        historyChangeCentiText: 'Fwdd3 > Fwd4',
+        historyChangeMilleText: 'Fwd4 > Fwd5',
+        historyChangeMicroText: 'Fwd5 > Fwd6',
+      },
+      {
+        id: 2,
+        taskId: 2,
+        historyTypeId: 1,
+        historyTypeName: 'Fwd',
+        historyChangeText: 'Fwd1 > Fwd2',
+        historyChangeDeciText: 'Fwd2 > Fwd3',
+        historyChangeCentiText: 'Fwdd3 > Fwd4',
+        historyChangeMilleText: 'Fwd4 > Fwd5',
+        historyChangeMicroText: 'Fwd5 > Fwd6',
+      },
+      {
+        id: 3,
+        taskId: 3,
+        historyTypeId: 1,
+        historyTypeName: 'Fwd',
+        historyChangeText: 'Fwd1 > Fwd2',
+        historyChangeDeciText: 'Fwd2 > Fwd3',
+        historyChangeCentiText: 'Fwdd3 > Fwd4',
+        historyChangeMilleText: 'Fwd4 > Fwd5',
+        historyChangeMicroText: 'Fwd5 > Fwd6',
+      },
+      {
+        id: 4,
+        taskId: 4,
+        historyTypeId: 1,
+        historyTypeName: 'Fwd',
+        historyChangeText: 'Fwd1 > Fwd2',
+        historyChangeDeciText: 'Fwd2 > Fwd3',
+        historyChangeCentiText: 'Fwdd3 > Fwd4',
+        historyChangeMilleText: 'Fwd4 > Fwd5',
+        historyChangeMicroText: 'Fwd5 > Fwd6',
+      },
+      {
+        id: 5,
+        taskId: 5,
+        historyTypeId: 1,
+        historyTypeName: 'Fwd',
+        historyChangeText: 'Fwd1 > Fwd2',
+        historyChangeDeciText: 'Fwd2 > Fwd3',
+        historyChangeCentiText: 'Fwdd3 > Fwd4',
+        historyChangeMilleText: 'Fwd4 > Fwd5',
+        historyChangeMicroText: 'Fwd5 > Fwd6',
+      },
+      {
+        id: 6,
+        taskId: 6,
+        historyTypeId: 1,
+        historyTypeName: 'Fwd',
+        historyChangeText: 'Fwd1 > Fwd2',
+        historyChangeDeciText: 'Fwd2 > Fwd3',
+        historyChangeCentiText: 'Fwdd3 > Fwd4',
+        historyChangeMilleText: 'Fwd4 > Fwd5',
+        historyChangeMicroText: 'Fwd5 > Fwd6',
+      },
+      {
+        id: 7,
+        taskId: 7,
+        historyTypeId: 1,
+        historyTypeName: 'Fwd',
+        historyChangeText: 'Fwd1 > Fwd2',
+        historyChangeDeciText: 'Fwd2 > Fwd3',
+        historyChangeCentiText: 'Fwdd3 > Fwd4',
+        historyChangeMilleText: 'Fwd4 > Fwd5',
+        historyChangeMicroText: 'Fwd5 > Fwd6',
+      },
+      {
+        id: 8,
+        taskId: 8,
+        historyTypeId: 1,
+        historyTypeName: 'Fwd',
+        historyChangeText: 'Fwd1 > Fwd2',
+        historyChangeDeciText: 'Fwd2 > Fwd3',
+        historyChangeCentiText: 'Fwdd3 > Fwd4',
+        historyChangeMilleText: 'Fwd4 > Fwd5',
+        historyChangeMicroText: 'Fwd5 > Fwd6',
+      },
+      {
+        id: 9,
+        taskId: 9,
+        historyTypeId: 1,
+        historyTypeName: 'Fwd',
+        historyChangeText: 'Fwd1 > Fwd2',
+        historyChangeDeciText: 'Fwd2 > Fwd3',
+        historyChangeCentiText: 'Fwdd3 > Fwd4',
+        historyChangeMilleText: 'Fwd4 > Fwd5',
+        historyChangeMicroText: 'Fwd5 > Fwd6',
+      },
+    ];
+  }
 
-  // export interface ITaskTemplate {
-  //   id: number;
-  //   name: string;
-  //   taskId: number;
-  //   task: ITask;
-  //   type: string;
-  //   subTasks: ITaskTemplateChild[];
-  // }
+  getAttachments(): IAttachment[] {
+    return [
+      {
+        id: 1,
+        taskId: 1,
+        attachementItemName: 'File1.xls',
+        attachementItem: 'some text encoding',
+      },
+      {
+        id: 2,
+        taskId: 1,
+        attachementItemName: 'File1.xls',
+        attachementItem: 'some text encoding',
+      },
+      {
+        id: 3,
+        taskId: 1,
+        attachementItemName: 'File1.xls',
+        attachementItem: 'some text encoding',
+      },
+      {
+        id: 4,
+        taskId: 1,
+        attachementItemName: 'File1.xls',
+        attachementItem: 'some text encoding',
+      },
+      {
+        id: 5,
+        taskId: 1,
+        attachementItemName: 'File1.xls',
+        attachementItem: 'some text encoding',
+      },
+      {
+        id: 6,
+        taskId: 1,
+        attachementItemName: 'File1.xls',
+        attachementItem: 'some text encoding',
+      },
+      {
+        id: 7,
+        taskId: 1,
+        attachementItemName: 'File1.xls',
+        attachementItem: 'some text encoding',
+      },
+      {
+        id: 8,
+        taskId: 1,
+        attachementItemName: 'File1.xls',
+        attachementItem: 'some text encoding',
+      },
+      {
+        id: 9,
+        taskId: 1,
+        attachementItemName: 'File1.xls',
+        attachementItem: 'some text encoding',
+      },
+    ];
+  }
 
-  // export interface ITaskTemplateChild{
-  //   id: number;
-  //   name: string;
-  //   taskTemplateId: number;
-  //   taskTemplate: ITaskTemplate
-  //   taskId: number;
-  //   task: ITask;
-  // }
+  getTaskTemplates(): ITaskTemplate[] {
+    return [
+      { id: 1, taskId: 1, name: '', type: '' },
+      { id: 2, taskId: 1, name: '', type: '' },
+      { id: 3, taskId: 1, name: '', type: '' },
+      { id: 4, taskId: 1, name: '', type: '' },
+      { id: 5, taskId: 1, name: '', type: '' },
+      { id: 6, taskId: 1, name: '', type: '' },
+      { id: 7, taskId: 1, name: '', type: '' },
+      { id: 8, taskId: 1, name: '', type: '' },
+      { id: 9, taskId: 1, name: '', type: '' },
+    ];
+  }
+
+  getITaskTemplateChildren(): ITaskTemplateChild[] {
+    return [
+      { id: 1, taskId: 1, name: '', taskTemplateId: 1 },
+      { id: 2, taskId: 1, name: '', taskTemplateId: 1 },
+      { id: 3, taskId: 1, name: '', taskTemplateId: 1 },
+      { id: 4, taskId: 1, name: '', taskTemplateId: 1 },
+      { id: 5, taskId: 1, name: '', taskTemplateId: 1 },
+      { id: 6, taskId: 1, name: '', taskTemplateId: 1 },
+      { id: 7, taskId: 1, name: '', taskTemplateId: 1 },
+      { id: 8, taskId: 1, name: '', taskTemplateId: 1 },
+      { id: 9, taskId: 1, name: '', taskTemplateId: 1 },
+    ];
+  }
 }

@@ -55,16 +55,12 @@ export interface ITaskTemplate {
   id: number;
   name: string;
   taskId: number;
-  task: ITask;
   type: string;
-  subTasks: ITaskTemplateChild[];
 }
 
 export interface ITaskTemplateChild {
   id: number;
   name: string;
   taskTemplateId: number;
-  taskTemplate: ITaskTemplate;
   taskId: number;
-  task: ITask;
 }
