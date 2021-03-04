@@ -22,9 +22,27 @@ export class TestDataService {
   //Group Models
   getUsers(): IUser[] {
     return [
-      { id: 1, firstName: 'Dan', lastName: 'Stewart' },
-      { id: 2, firstName: 'Heidi', lastName: 'Stewart' },
-      { id: 3, firstName: 'Abe', lastName: 'Stewart' },
+      {
+        id: 1,
+        firstName: 'Dan',
+        lastName: 'Stewart',
+        isAdmin: true,
+        userName: 'dstewart',
+      },
+      {
+        id: 2,
+        firstName: 'Heidi',
+        lastName: 'Stewart',
+        isAdmin: true,
+        userName: 'hstewart',
+      },
+      {
+        id: 3,
+        firstName: 'Abe',
+        lastName: 'Stewart',
+        isAdmin: true,
+        userName: 'astewart',
+      },
     ];
   }
 

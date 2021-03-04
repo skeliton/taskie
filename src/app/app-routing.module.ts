@@ -8,6 +8,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./tasking/tasking.module').then((m) => m.TaskingModule),
   },
+  {
+    path: 'profile',
+    loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
+  },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
 ];

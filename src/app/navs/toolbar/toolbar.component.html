@@ -10,6 +10,12 @@
  <span class="spacer"></span>
  <span>{{title}}</span>
  <span class="spacer"></span>
+ <ul>
+  <li
+    *ngIf="!isLoggedIn"><a [routerLink]="['/profile/login']">Log In</a></li>
+  <li
+    *ngIf="isLoggedIn"><a (click)="logOut()">Log Out</a></li>
+</ul>
  <mat-form-field appearance="fill">
    <mat-select [(value)]="taskieFilterSelected">
      <mat-option value="merged">Merged

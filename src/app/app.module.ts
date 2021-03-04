@@ -9,22 +9,24 @@ import { TaskingModule } from './tasking/tasking.module';
 import { ToolbarComponent } from './navs/toolbar/toolbar.component';
 import { MainSideNavComponent } from './navs/main-side-nav/main-side-nav.component';
 import { GroupSideNavComponent } from './navs/group-side-nav/group-side-nav.component';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
     MainSideNavComponent,
-    GroupSideNavComponent
+    GroupSideNavComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    TaskingModule
+    TaskingModule,
+    UserModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

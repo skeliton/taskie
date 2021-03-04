@@ -7,8 +7,10 @@ export interface IGroup {
 
 export interface IUser {
   id: number;
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
+  userName: string;
+  isAdmin: boolean;
 }
 
 export interface IGroupUser {
