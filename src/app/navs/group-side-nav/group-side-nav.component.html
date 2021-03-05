@@ -1,8 +1,9 @@
 <mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav mode="over" [(opened)]="opened">
+  <mat-sidenav #sidenav mode="over" [(opened)]="opened" position="end">
     groupSidenav content
+    <router-outlet name="taskGroupList"></router-outlet>
   </mat-sidenav>
   <mat-sidenav-content>
-    <router-outlet></router-outlet>
+    <router-outlet #o="outlet" ></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

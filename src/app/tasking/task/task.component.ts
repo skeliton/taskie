@@ -1,11 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-task-dashboard',
-  templateUrl: './task-dashboard.component.html',
-  styleUrls: ['./task-dashboard.component.scss'],
+  selector: 'app-task',
+  templateUrl: './task.component.html',
+  styleUrls: ['./task.component.scss'],
 })
-export class TaskDashboardComponent implements OnInit {
+export class TaskComponent implements OnInit {
+  taskPanelOpenState = true;
+  focusedTaskName = 'Create Dashboard Page';
+  priority = 'tasklist';
+  priorityLevel = 'top';
+  @Input() depth: number = 0;
+
   constructor() {}
 
   ngOnInit(): void {}

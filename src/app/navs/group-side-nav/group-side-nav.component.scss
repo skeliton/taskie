@@ -5,3 +5,8 @@
   left: 0;
   right: 0;
 }
+
+.example-container-flex {
+  display: flex;
+  flex-direction: row-reverse;
+}

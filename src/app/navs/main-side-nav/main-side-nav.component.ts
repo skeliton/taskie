@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { GroupSideNavComponent } from '../group-side-nav/group-side-nav.component';
 
 @Component({
   selector: 'app-main-side-nav',
@@ -8,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class MainSideNavComponent implements OnInit {
   events: string[] = [];
   opened: boolean = false;
+  @ViewChild('groupNav')
+  private groupNav?: GroupSideNavComponent;
 
   constructor() {}
 
@@ -15,5 +18,9 @@ export class MainSideNavComponent implements OnInit {
 
   toggle() {
     this.opened = !this.opened;
+  }
+
+  toggleGroupNav(): void {
+    this.groupNav?.toggle();
   }
 }

@@ -5,7 +5,7 @@ export interface IGroupTask {
   groupId: number;
   taskId: number;
   claimingUserId?: number;
-  creatingUserid: number;
+  creatingUserId: number;
   creatingUserReviewClosed: boolean;
   archive: boolean;
 }
