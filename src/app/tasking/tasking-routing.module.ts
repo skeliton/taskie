@@ -7,7 +7,7 @@ import { TaskGroupComponent } from './task-group/task-group.component';
 const routes: Routes = [
   //  {path: 'task/:id/items/:itemId', component: TaskItemDetailComponent}
   {
-    path: 'groups/:id',
+    path: 'group/:id',
     component: TaskGroupComponent,
     outlet: 'taskGroupList',
   },
@@ -16,7 +16,7 @@ const routes: Routes = [
     component: TaskGroupListComponent,
     outlet: 'taskGroupList',
   },
-  { path: '', component: TaskDashboardComponent },
+  { path: '', component: TaskDashboardComponent},
   { path: '**', component: TaskDashboardComponent },
 ];
 
