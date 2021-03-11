@@ -4,6 +4,11 @@
     <router-outlet name="taskGroupList"></router-outlet>
   </mat-sidenav>
   <mat-sidenav-content>
-    <router-outlet #o="outlet" ></router-outlet>
+    <div *ngIf="loading">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="!loading">
+      <router-outlet #o="outlet" ></router-outlet>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

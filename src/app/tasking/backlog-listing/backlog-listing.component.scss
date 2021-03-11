@@ -32,3 +32,27 @@
   justify-content: center;
   flex-direction: column;
 }
+
+table {
+  width: 100%;
+}
+
+center {
+  margin: 0 auto;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+
+.example-button-row {
+  display: table-cell;
+  width: 490px;
+}

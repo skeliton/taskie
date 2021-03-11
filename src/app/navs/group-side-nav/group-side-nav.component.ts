@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-
 @Component({
   selector: 'app-group-side-nav',
   templateUrl: './group-side-nav.component.html',
@@ -8,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GroupSideNavComponent implements OnInit {
   opened: boolean = false;
-
+  loading: boolean = false;
   constructor() {}
 
   ngOnInit(): void {}
