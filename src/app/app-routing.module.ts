@@ -3,6 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'groups',
+    loadChildren: () =>
+      import('./task-group-list/task-group-list.module').then(
+        (m) => m.TaskGroupListModule
+      ),
+  },
+  {
     path: 'dashboard',
     loadChildren: () =>
       import('./tasking/tasking.module').then((m) => m.TaskingModule),

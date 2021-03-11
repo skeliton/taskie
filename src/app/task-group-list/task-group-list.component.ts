@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IGroup } from 'src/app/models/group';
-import { IGroupTask } from 'src/app/models/task';
-import { TestDataService } from 'src/app/services/test-data.service';
+import { IGroup } from '../models/group';
+import { TestDataService } from '../services/test-data.service';
 
 @Component({
   selector: 'app-task-group-list',

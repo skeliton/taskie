@@ -25,7 +25,7 @@
         <tr *ngFor="let group of filteredGroups">
           <td>
             <app-task-group-list-item groupName = "group.groupName"></app-task-group-list-item>
-            <a [routerLink]="[{outlets: {taskGroupList:['groups', group.id]}}]"
+            <a [routerLink]="[{outlets: {taskGroupList:['group', group.id]}}]"
             [queryParams]="{filterBy: listFilter}">
             {{ group.groupName }}
             </a>

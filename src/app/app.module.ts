@@ -10,6 +10,7 @@ import { ToolbarComponent } from './navs/toolbar/toolbar.component';
 import { MainSideNavComponent } from './navs/main-side-nav/main-side-nav.component';
 import { GroupSideNavComponent } from './navs/group-side-nav/group-side-nav.component';
 import { UserModule } from './user/user.module';
+import { TaskGroupListModule } from './task-group-list/task-group-list.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { UserModule } from './user/user.module';
     SharedModule,
     TaskingModule,
     UserModule,
+    TaskGroupListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
