@@ -31,6 +31,17 @@
             </a>
           </td>
         </tr>
+        <tr>
+          <td>
+            <div>
+              <button mat-button [matMenuTriggerFor]="menu">Create Group</button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item>Team</button>
+                  <button mat-menu-item>Organisation</button>
+                </mat-menu>
+            </div>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>

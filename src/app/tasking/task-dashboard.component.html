@@ -3,21 +3,66 @@
 <app-task [depth]="0"></app-task>
  <!-- Task List -->
 <div class="container">
-  <mat-tab-group>
-    <mat-tab label="Task List">
-      <app-backlog-listing></app-backlog-listing>
-    </mat-tab>
-    <mat-tab label="Last Tasks">
-      <app-backlog-listing></app-backlog-listing>
-    </mat-tab>
-  </mat-tab-group>
-  <mat-tab-group>
-    <mat-tab label="Backlog">
-      <app-backlog-listing></app-backlog-listing>
-    </mat-tab>
-    <mat-tab label="Archive">
-      <app-backlog-listing></app-backlog-listing>
-    </mat-tab>
-  </mat-tab-group>
+  <mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Task Listing
+        </mat-panel-title>
+        <mat-panel-description>
+          Open
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-tab-group>
+        <mat-tab label="Task List">
+          <app-backlog-listing title="Task List"></app-backlog-listing>
+        </mat-tab>
+        <mat-tab label="Last Tasks">
+          <app-backlog-listing title="Last Tasks"></app-backlog-listing>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Backlog
+        </mat-panel-title>
+        <mat-panel-description>
+          Open
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-tab-group>
+        <mat-tab label="Backlog">
+          <app-backlog-listing title="Backlog"></app-backlog-listing>
+        </mat-tab>
+        <mat-tab label="Archive">
+          <app-backlog-listing title="Archive"></app-backlog-listing>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Advanced Tasking
+        </mat-panel-title>
+        <mat-panel-description>
+          Open
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-tab-group>
+        <mat-tab label="Reoccuring Tasks">
+          <app-backlog-listing title="Reoccuring Tasks"></app-backlog-listing>
+        </mat-tab>
+        <mat-tab label="Task Stats/Goals">
+          <app-backlog-listing title="Task Stats/Goals"></app-backlog-listing>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-expansion-panel>
+  </mat-accordion>
+
 
 </div>

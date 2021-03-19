@@ -11,6 +11,8 @@ import { MainSideNavComponent } from './navs/main-side-nav/main-side-nav.compone
 import { GroupSideNavComponent } from './navs/group-side-nav/group-side-nav.component';
 import { UserModule } from './user/user.module';
 import { TaskGroupListModule } from './task-group-list/task-group-list.module';
+import { AuthModule } from '@auth0/auth0-angular';
+import { Constants } from './constants';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,10 @@ import { TaskGroupListModule } from './task-group-list/task-group-list.module';
     TaskingModule,
     UserModule,
     TaskGroupListModule,
+    AuthModule.forRoot({
+      domain: Constants.stsAuthority,
+      clientId: Constants.clientId,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
