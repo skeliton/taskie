@@ -26,7 +26,7 @@
           <td>
             <app-task-group-list-item groupName = "group.groupName"></app-task-group-list-item>
             <a [routerLink]="[{outlets: {taskGroupList:['group', group.id]}}]"
-            [queryParams]="{filterBy: listFilter}">
+            >
             {{ group.groupName }}
             </a>
           </td>

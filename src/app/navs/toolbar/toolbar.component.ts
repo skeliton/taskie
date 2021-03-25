@@ -3,9 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { IGroup, IGroupUser, IUser } from 'src/app/models/group';
+import { GroupService } from 'src/app/services/group.service';
 //import { AuthService } from 'src/app/services/auth.service';
 import { LoggerService } from 'src/app/services/logger.service';
-import { UserGroupService } from 'src/app/services/user-group.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -14,14 +15,14 @@ import { UserGroupService } from 'src/app/services/user-group.service';
 })
 export class ToolbarComponent implements OnInit {
   title = 'Taskie';
-  taskieFilterSelected = 'merged';
   userId = 1;
   user!: IUser;
   groupUser!: IGroupUser[];
   groups!: IGroup[];
 
   constructor(
-    private userGroupService: UserGroupService,
+    private userService: UserService,
+    private groupService: GroupService,
     private loggerService: LoggerService,
     private router: Router,
     private scheduleDialog: MatDialog,
@@ -30,8 +31,8 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.loggerService.log('onInit');
-    this.user = this.userGroupService.getUserById(this.userId);
-    this.groups = this.userGroupService.getGroupsByUserId(this.userId);
+    this.user = this.userService.getUserById(this.userId);
+    this.groups = this.userService.getGroupsByUserId(this.userId);
   }
 
   // get isLoggedIn(): boolean {

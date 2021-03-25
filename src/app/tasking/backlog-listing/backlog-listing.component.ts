@@ -9,14 +9,14 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ITask } from 'src/app/models/task';
-import { TestDataService } from 'src/app/services/test-data.service';
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-backlog-listing',
   templateUrl: './backlog-listing.component.html',
   styleUrls: ['./backlog-listing.component.scss'],
-})
-export class BacklogListingComponent implements OnInit, AfterViewInit {
+}) // implements OnInit, AfterViewInit
+export class BacklogListingComponent {
   @Input() title = '';
   tasks!: ITask[];
   displayedColumns = ['currentPosition', 'name', 'id'];
@@ -24,20 +24,20 @@ export class BacklogListingComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private taskService: TestDataService) {}
+  constructor(private taskService: TaskService) {}
 
-  ngOnInit(): void {
-    this.tasks = this.taskService.getTasks();
-    this.dataSource = new MatTableDataSource<ITask>(this.tasks);
-  }
+  // ngOnInit(): void {
+  //   this.tasks = this.taskService.getTasks();
+  //   this.dataSource = new MatTableDataSource<ITask>(this.tasks);
+  // }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  //   this.dataSource.sort = this.sort;
+  // }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+  // applyFilter(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  // }
 }

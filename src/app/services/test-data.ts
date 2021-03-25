@@ -8,20 +8,19 @@ import {
   ITaskTemplate,
   ITaskTemplateChild,
 } from '../models/task';
+import { InMemoryDbService } from 'angular-in-memory-web-api';
 
-// insert nums cntl+alt+n
-//duplicate line ctnl+alt + up/down arrow
-//row edit shift+alt+ up/down arrow
-
-@Injectable({
-  providedIn: 'root',
-})
-export class TestDataService {
-  constructor() {}
-
-  //Group Models
-  getUsers(): IUser[] {
-    return [
+export class TestData implements InMemoryDbService {
+  // insert nums cntl+alt+n
+  //duplicate line ctnl+alt + up/down arrow
+  //row edit shift+alt+ up/down arrow
+  //insert nums cntl+alt+n
+  //duplicate line shift+alt + up/down arrow
+  //row edit cntl+alt+ up/down arrow
+  //clipboard history: cntl+shift+V
+  createDb() {
+    //Group Models
+    const users: IUser[] = [
       {
         id: 1,
         firstName: 'Dan',
@@ -44,10 +43,8 @@ export class TestDataService {
         userName: 'astewart',
       },
     ];
-  }
 
-  getGroups(): IGroup[] {
-    return [
+    const groups: IGroup[] = [
       { id: 1, groupName: 'Personal', groupType: 'personal', ownerUserId: 1 },
       { id: 2, groupName: 'Personal', groupType: 'personal', ownerUserId: 2 },
       { id: 3, groupName: 'Personal', groupType: 'personal', ownerUserId: 3 },
@@ -55,10 +52,8 @@ export class TestDataService {
       { id: 5, groupName: 'Waukee Schools', groupType: 'org', ownerUserId: 1 },
       { id: 6, groupName: 'Full Family', groupType: 'org', ownerUserId: 1 },
     ];
-  }
 
-  getGroupUsers(): IGroupUser[] {
-    return [
+    const groupUsers: IGroupUser[] = [
       { id: 1, groupId: 1, userId: 1 },
       { id: 2, groupId: 2, userId: 2 },
       { id: 3, groupId: 3, userId: 3 },
@@ -70,11 +65,8 @@ export class TestDataService {
       { id: 9, groupId: 5, userId: 3 },
       { id: 10, groupId: 1, userId: 1 },
     ];
-  }
 
-  //Task Models
-  getGroupTasks(): IGroupTask[] {
-    return [
+    const groupTasks: IGroupTask[] = [
       {
         id: 1,
         groupId: 1,
@@ -157,10 +149,7 @@ export class TestDataService {
         archive: false,
       },
     ];
-  }
-
-  getTasks(): ITask[] {
-    return [
+    const tasks: ITask[] = [
       {
         id: 1,
         name: '',
@@ -372,15 +361,8 @@ export class TestDataService {
         aggraCount: 0,
       },
     ];
-  }
 
-  //insert nums cntl+alt+n
-  //duplicate line shift+alt + up/down arrow
-  //row edit cntl+alt+ up/down arrow
-  //clipboard history: cntl+shift+V
-
-  getTaskHistory(): ITaskHistory[] {
-    return [
+    const taskHistory: ITaskHistory[] = [
       {
         id: 1,
         taskId: 0,
@@ -492,10 +474,8 @@ export class TestDataService {
         historyChangeMicroText: 'Fwd5 > Fwd6',
       },
     ];
-  }
 
-  getAttachments(): IAttachment[] {
-    return [
+    const attachments: IAttachment[] = [
       {
         id: 1,
         taskId: 1,
@@ -551,10 +531,8 @@ export class TestDataService {
         attachementItem: 'some text encoding',
       },
     ];
-  }
 
-  getTaskTemplates(): ITaskTemplate[] {
-    return [
+    const taskTemplates: ITaskTemplate[] = [
       { id: 1, taskId: 1, name: '', type: '' },
       { id: 2, taskId: 1, name: '', type: '' },
       { id: 3, taskId: 1, name: '', type: '' },
@@ -565,10 +543,8 @@ export class TestDataService {
       { id: 8, taskId: 1, name: '', type: '' },
       { id: 9, taskId: 1, name: '', type: '' },
     ];
-  }
 
-  getITaskTemplateChildren(): ITaskTemplateChild[] {
-    return [
+    const taskTemplateChildren: ITaskTemplateChild[] = [
       { id: 1, taskId: 1, name: '', taskTemplateId: 1 },
       { id: 2, taskId: 1, name: '', taskTemplateId: 1 },
       { id: 3, taskId: 1, name: '', taskTemplateId: 1 },
@@ -579,5 +555,17 @@ export class TestDataService {
       { id: 8, taskId: 1, name: '', taskTemplateId: 1 },
       { id: 9, taskId: 1, name: '', taskTemplateId: 1 },
     ];
+
+    return {
+      users,
+      groups,
+      groupUsers,
+      groupTasks,
+      tasks,
+      taskHistory,
+      attachments,
+      taskTemplates,
+      taskTemplateChildren,
+    };
   }
 }

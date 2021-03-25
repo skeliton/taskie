@@ -13,6 +13,12 @@ import { UserModule } from './user/user.module';
 import { TaskGroupListModule } from './task-group-list/task-group-list.module';
 import { AuthModule } from '@auth0/auth0-angular';
 import { Constants } from './constants';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { TestData } from './services/test-data';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 @NgModule({
   declarations: [
@@ -25,6 +31,7 @@ import { Constants } from './constants';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientInMemoryWebApiModule.forRoot(TestData),
     SharedModule,
     TaskingModule,
     UserModule,
@@ -33,6 +40,9 @@ import { Constants } from './constants';
       domain: Constants.stsAuthority,
       clientId: Constants.clientId,
     }),
+    StoreModule.forRoot({}, {}),
+    StoreDevtoolsModule.instrument({name:"Taskie", maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent],
