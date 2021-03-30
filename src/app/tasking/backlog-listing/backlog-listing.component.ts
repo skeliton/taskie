@@ -8,6 +8,7 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Observable } from 'rxjs';
 import { ITask } from 'src/app/models/task';
 import { TaskService } from 'src/app/services/task.service';
 
@@ -18,7 +19,7 @@ import { TaskService } from 'src/app/services/task.service';
 }) // implements OnInit, AfterViewInit
 export class BacklogListingComponent {
   @Input() title = '';
-  tasks!: ITask[];
+  tasks$: Observable<ITask[]> | undefined;
   displayedColumns = ['currentPosition', 'name', 'id'];
   dataSource!: MatTableDataSource<ITask>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -26,18 +27,18 @@ export class BacklogListingComponent {
 
   constructor(private taskService: TaskService) {}
 
-  // ngOnInit(): void {
-  //   this.tasks = this.taskService.getTasks();
-  //   this.dataSource = new MatTableDataSource<ITask>(this.tasks);
-  // }
+  ngOnInit(): void {
+    this.tasks$ = this.taskService.getTasks();
+    //this.dataSource = new MatTableDataSource<ITask>(this.tasks$);
+  }
 
-  // ngAfterViewInit() {
-  //   this.dataSource.paginator = this.paginator;
-  //   this.dataSource.sort = this.sort;
-  // }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
 
-  // applyFilter(event: Event) {
-  //   const filterValue = (event.target as HTMLInputElement).value;
-  //   this.dataSource.filter = filterValue.trim().toLowerCase();
-  // }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }

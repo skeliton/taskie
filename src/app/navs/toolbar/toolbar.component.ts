@@ -2,11 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { IGroup, IGroupUser, IUser } from 'src/app/models/group';
 import { GroupService } from 'src/app/services/group.service';
 //import { AuthService } from 'src/app/services/auth.service';
 import { LoggerService } from 'src/app/services/logger.service';
 import { UserService } from 'src/app/services/user.service';
+import { State } from 'src/app/state/app.state';
+import { getCurrentUser } from 'src/app/user/state/user.reducer';
 
 @Component({
   selector: 'app-toolbar',
@@ -15,10 +19,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ToolbarComponent implements OnInit {
   title = 'Taskie';
-  userId = 1;
-  user!: IUser;
-  groupUser!: IGroupUser[];
-  groups!: IGroup[];
+
+  user$: Observable<IUser> | undefined;
 
   constructor(
     private userService: UserService,
@@ -26,13 +28,14 @@ export class ToolbarComponent implements OnInit {
     private loggerService: LoggerService,
     private router: Router,
     private scheduleDialog: MatDialog,
-    public auth: AuthService
+    public auth: AuthService,
+    private store: Store<State>
   ) {}
 
   ngOnInit(): void {
     this.loggerService.log('onInit');
-    this.user = this.userService.getUserById(this.userId);
-    this.groups = this.userService.getGroupsByUserId(this.userId);
+    //this.user$ = this.store.select(getCurrentUser);
+    //this.groups = this.userService.getGroupsByUserId(this.userId);
   }
 
   // get isLoggedIn(): boolean {

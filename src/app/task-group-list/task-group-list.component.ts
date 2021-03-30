@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -9,6 +9,7 @@ import {
   getCurrentTaskGroup,
   getError,
   getFilteredGroups,
+  getGroupFilterText,
   getGroups,
   getShowMerged,
 } from './state/task-group-list.reducer';
@@ -18,25 +19,25 @@ import {
   templateUrl: './task-group-list.component.html',
   styleUrls: ['./task-group-list.component.scss'],
 })
-export class TaskGroupListComponent implements OnInit {
+export class TaskGroupListComponent implements OnInit, OnDestroy {
   pageTitle = 'Task Group List';
   showMergedView$: Observable<boolean> | undefined;
+  groupFilterText$: Observable<string> | undefined;
   errorMessage$: Observable<string> | undefined;
   groups$: Observable<IGroup[]> | undefined;
   filteredGroups$: Observable<IGroup[]> | undefined;
   selectedGroup$: Observable<IGroup | null | undefined> | undefined;
-  //_listFilter = '';
+  _listFilter = '';
 
-  // get listFilter(): string {
-  //   return this._listFilter;
-  // }
-  // set listFilter(value: string) {
-  //   this._listFilter = value;
-  //   this.performFilter(value);
-  //   this.filteredGroups = this.listFilter
-  //     ? this.performFilter(this.listFilter)
-  //     : this.groups$;
-  // }
+  get listFilter(): string {
+    return this._listFilter;
+  }
+  set listFilter(value: string) {
+    this._listFilter = value.toLocaleLowerCase();
+    this.store.dispatch(
+      TaskGroupActions.setGroupFilterText({ groupFilterText: this._listFilter })
+    );
+  }
   constructor(private route: ActivatedRoute, private store: Store<State>) {}
 
   ngOnInit(): void {
@@ -46,11 +47,18 @@ export class TaskGroupListComponent implements OnInit {
 
     this.errorMessage$ = this.store.select(getError);
 
+    this.groupFilterText$ = this.store.select(getGroupFilterText);
+
     this.groups$ = this.store.select(getGroups);
 
     this.selectedGroup$ = this.store.select(getCurrentTaskGroup);
 
     this.filteredGroups$ = this.store.select(getFilteredGroups);
+  }
+
+  ngOnDestroy(): void {
+    //clear filter to clean state
+    this.listFilter = '';
   }
 
   checkChangedMergedView(): void {
@@ -64,6 +72,12 @@ export class TaskGroupListComponent implements OnInit {
   groupSelected(group: IGroup): void {
     this.store.dispatch(
       TaskGroupActions.setCurrentTaskGroup({ currentTaskGroupId: group.id })
+    );
+  }
+
+  setFilterText(value: string): void {
+    this.store.dispatch(
+      TaskGroupActions.setGroupFilterText({ groupFilterText: value })
     );
   }
 

@@ -7,6 +7,9 @@ import { TaskGroupListItemComponent } from './task-group-list-item/task-group-li
 import { TaskGroupComponent } from './task-group/task-group.component';
 import { StoreModule } from '@ngrx/store';
 import { taskGroupListReducer } from './state/task-group-list.reducer';
+import { HttpClientModule } from '@angular/common/http';
+import { TaskGroupListEffects } from './state/task-group-list.effects';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,9 @@ import { taskGroupListReducer } from './state/task-group-list.reducer';
   imports: [
     SharedModule,
     TaskGroupListRoutingModule,
+    HttpClientModule,
     StoreModule.forFeature('taskGroupList', { taskGroupListReducer }),
+    EffectsModule.forFeature([TaskGroupListEffects]),
   ],
 })
 export class TaskGroupListModule {}

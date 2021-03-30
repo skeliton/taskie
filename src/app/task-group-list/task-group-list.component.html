@@ -1,7 +1,7 @@
 <div class="card-body">
   <div class="table-responsive">
     <table class="table mb-0"
-           *ngIf="groups && groups.length">
+           *ngIf="(groups$ |async ) && (groups$ |async )?.length">
       <thead>
         <tr>
           <th>
@@ -15,14 +15,14 @@
             <div class="row"
                  *ngIf="listFilter">
               <div class="col-md-6">
-                <h4>Filtered by: {{listFilter}}</h4>
+                <h4>Filtered by: {{(groupFilterText$ |async)}}</h4>
               </div>
             </div>
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let group of filteredGroups">
+        <tr *ngFor="let group of filteredGroups$ |async">
           <td>
             <app-task-group-list-item groupName = "group.groupName"></app-task-group-list-item>
             <a [routerLink]="[{outlets: {taskGroupList:['group', group.id]}}]"
@@ -48,7 +48,7 @@
 
 </div>
 
-<div *ngIf="errorMessage"
+<div *ngIf="errorMessage$ | async"
    class="alert alert-danger">
-Error: {{ errorMessage }}
+Error: {{ errorMessage$ | async}}
 </div>
