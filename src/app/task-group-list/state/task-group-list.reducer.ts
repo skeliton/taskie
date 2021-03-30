@@ -55,7 +55,7 @@ export const getCurrentTaskGroup = createSelector(
       };
     } else {
       return currentGroupId
-        ? (state.groups.find((p) => p.id === currentGroupId))
+        ? state.groups.find((p) => p.id === currentGroupId)
         : null;
     }
   }
@@ -63,7 +63,11 @@ export const getCurrentTaskGroup = createSelector(
 
 export const getGroups = createSelector(
   getTaskGroupListFeatureState,
-  (state) => state.groups
+  (state) => {
+    console.log('STATE:' + JSON.stringify(state.groups));
+    console.log('STATE:' + JSON.stringify(state.showMerged));
+    return state.groups;
+  }
 );
 
 export const getFilteredGroups = createSelector(
@@ -125,6 +129,14 @@ export const taskGroupListReducer = createReducer<TaskGroupListState>(
       return {
         ...state,
         groups: action.groups,
+        filteredGroups: state.groupFilterText
+          ? action.groups.filter(
+              (group: IGroup) =>
+                group.groupName
+                  .toLocaleLowerCase()
+                  .indexOf(state.groupFilterText) !== -1
+            )
+          : action.groups,
         error: '',
       };
     }

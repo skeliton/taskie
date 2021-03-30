@@ -19,6 +19,7 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { TestData } from './services/test-data';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
     }),
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({name:"Taskie", maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent],

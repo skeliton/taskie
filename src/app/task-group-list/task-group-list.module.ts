@@ -21,7 +21,7 @@ import { EffectsModule } from '@ngrx/effects';
     SharedModule,
     TaskGroupListRoutingModule,
     HttpClientModule,
-    StoreModule.forFeature('taskGroupList', { taskGroupListReducer }),
+    StoreModule.forFeature('taskGroupList', taskGroupListReducer),
     EffectsModule.forFeature([TaskGroupListEffects]),
   ],
 })

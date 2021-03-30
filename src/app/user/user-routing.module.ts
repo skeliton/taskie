@@ -6,8 +6,6 @@ import { StoreModule } from '@ngrx/store';
 import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
-import { UserListEffects } from './state/user.effects';
-import { userReducer } from './state/user.reducer';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -15,13 +13,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    SharedModule,
-    HttpClientModule,
-    RouterModule.forChild(routes),
-    StoreModule.forFeature('user', { userReducer }),
-    EffectsModule.forFeature([UserListEffects])
-  ],
+  imports: [SharedModule, HttpClientModule, RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
 export class UserRoutingModule {}

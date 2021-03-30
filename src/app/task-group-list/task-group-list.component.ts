@@ -41,8 +41,6 @@ export class TaskGroupListComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private store: Store<State>) {}
 
   ngOnInit(): void {
-    this.store.dispatch(TaskGroupActions.loadTaskGroups());
-
     this.showMergedView$ = this.store.select(getShowMerged);
 
     this.errorMessage$ = this.store.select(getError);
@@ -54,6 +52,8 @@ export class TaskGroupListComponent implements OnInit, OnDestroy {
     this.selectedGroup$ = this.store.select(getCurrentTaskGroup);
 
     this.filteredGroups$ = this.store.select(getFilteredGroups);
+
+    this.store.dispatch(TaskGroupActions.loadTaskGroups());
   }
 
   ngOnDestroy(): void {
