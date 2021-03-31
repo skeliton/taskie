@@ -8,7 +8,6 @@ import { IGroup, IGroupUser, IUser } from 'src/app/models/group';
 import { GroupService } from 'src/app/services/group.service';
 //import { AuthService } from 'src/app/services/auth.service';
 import { LoggerService } from 'src/app/services/logger.service';
-import { UserService } from 'src/app/services/user.service';
 import { State } from 'src/app/state/app.state';
 import { getCurrentUser } from 'src/app/user/state/user.reducer';
 
@@ -23,8 +22,6 @@ export class ToolbarComponent implements OnInit {
   user$: Observable<IUser> | undefined;
 
   constructor(
-    private userService: UserService,
-    private groupService: GroupService,
     private loggerService: LoggerService,
     private router: Router,
     private scheduleDialog: MatDialog,

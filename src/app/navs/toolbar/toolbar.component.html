@@ -2,31 +2,36 @@
   <button mat-icon-button (click) = "mainSideNav.toggle()">
    <mat-icon>menu</mat-icon>
  </button>
- <img
+ <span class="spacer"></span>
+ <img class="icon"
    width="40"
    alt="Taskie Logo"
    src="../faviconTaskie.png"
  />
- <span class="spacer"></span>
- <span>{{title}}</span>
- <span class="spacer"></span>
  <span>
-  <button mat-button [matMenuTriggerFor]="belowMenu">Views</button>
-  <mat-menu #belowMenu="matMenu" yPosition="below">
-    <button mat-menu-item>Collapse Dashboard</button>
-    <button mat-menu-item>Schedule</button>
-    <button mat-menu-item>Productivity</button>
-    <button mat-menu-item>VsIndex</button>
-  </mat-menu>
+  <button mat-button [matMenuTriggerFor]="belowMenu">
+    {{title}}
+    <mat-icon>expand_more</mat-icon>
+  </button>
+  <!-- #docregion sub-menu -->
+<mat-menu #belowMenu="matMenu" yPosition="below">
+  <button mat-menu-item>Collapse Dashboard</button>
+  <button mat-menu-item [matMenuTriggerFor]="views">Views</button>
+</mat-menu>
+<mat-menu #views="matMenu">
+  <button mat-menu-item>Schedule</button>
+  <button mat-menu-item>Productivity</button>
+  <button mat-menu-item>VsIndex</button>
+</mat-menu>
  </span>
+ <span class="spacer"></span>
  <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
   <button (click)="logOut()">
     Log out
   </button>
 </ng-container>
-
 <ng-template #loggedOut>
-  <button (click)="auth.loginWithRedirect()">Log in</button>
+  <button mat-button color="accent" (click)="auth.loginWithRedirect()">Log in</button>
 </ng-template>
  <!-- <mat-form-field appearance="fill">
    <mat-select [(value)]="taskieFilterSelected">

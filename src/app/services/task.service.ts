@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { ITask } from '../models/task';
+import { LoggerService } from './logger.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,13 +12,24 @@ import { ITask } from '../models/task';
 export class TaskService {
   private url = 'api/tasks';
 
-  constructor(private http: HttpClient) {}
+  constructor(private loggerService: LoggerService, private http: HttpClient) {}
 
   getTasks(): Observable<ITask[]> {
     return this.http.get<ITask[]>(this.url).pipe(
       tap((data) => console.log(JSON.stringify(data))),
       catchError(this.handleError)
     );
+  }
+
+  getTasksById(id: number): Observable<ITask> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const url = `${this.url}/${id}`;
+    return this.http
+      .get<ITask>(url, { headers })
+      .pipe(
+        tap((data) => console.log('getGroup: ' + id)),
+        catchError(this.loggerService.handleError)
+      );
   }
 
   createTask(task: ITask): Observable<ITask> {
