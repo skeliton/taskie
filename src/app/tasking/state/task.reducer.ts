@@ -24,7 +24,7 @@ const initialState: TaskFeatureState = {
   associatedTasks: [],
 };
 
-const getTaskFeatureState = createFeatureSelector<TaskFeatureState>('task');
+const getTaskFeatureState = createFeatureSelector<TaskFeatureState>('tasking');
 
 export const getCurrentTaskId = createSelector(
   getTaskFeatureState,

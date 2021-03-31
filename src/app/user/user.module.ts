@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProfileComponent } from './profile/profile.component';
 import { StoreModule } from '@ngrx/store';
-import { UserListEffects } from './state/user.effects';
+import { UserEffects } from './state/user.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { userReducer } from './state/user.reducer';
 
@@ -17,7 +17,7 @@ import { userReducer } from './state/user.reducer';
     CommonModule,
     UserRoutingModule,
     StoreModule.forFeature('user', userReducer),
-    EffectsModule.forFeature([UserListEffects]),
+    EffectsModule.forFeature([UserEffects]),
   ],
 })
 export class UserModule {}

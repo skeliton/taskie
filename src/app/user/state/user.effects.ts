@@ -6,7 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 import * as UserActions from './user.actions';
 
 @Injectable({ providedIn: 'root' })
-export class UserListEffects {
+export class UserEffects {
   constructor(private actions$: Actions, private userService: UserService) {}
 
   loadCurrentUserById$ = createEffect(() => {

@@ -6,7 +6,7 @@ import { TaskService } from 'src/app/services/task.service';
 import * as TaskActions from './task.actions';
 
 @Injectable({ providedIn: 'root' })
-export class TaskListEffects {
+export class TaskEffects {
   constructor(private actions$: Actions, private taskService: TaskService) {}
 
   loadCurrentTaskById$ = createEffect(() => {
