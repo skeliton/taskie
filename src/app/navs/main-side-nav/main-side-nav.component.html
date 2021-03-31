@@ -2,12 +2,12 @@
   <mat-sidenav #sidenav mode="over" [(opened)]="opened" (opened)="events.push('open!')"
                (closed)="events.push('close!')">
                <div>
-    <button mat-button [matMenuTriggerFor]="belowMenu">
+    <button mat-button [matMenuTriggerFor]="templateMenu">
       Templates
       <mat-icon>expand_more</mat-icon>
     </button>
     <!-- #docregion sub-menu -->
-  <mat-menu #belowMenu="matMenu" yPosition="below">
+  <mat-menu #templateMenu="matMenu" yPosition="below">
     <button mat-menu-item [matMenuTriggerFor]="habits">Habits</button>
   </mat-menu>
   <mat-menu #habits="matMenu">
@@ -16,6 +16,7 @@
     <button mat-menu-item>Sleep</button>
     <button mat-menu-item>Study</button>
     <button mat-menu-item>Mindfulness</button>
+    <button mat-menu-item>Exercise</button>
   </mat-menu>
 </div>
   </mat-sidenav>

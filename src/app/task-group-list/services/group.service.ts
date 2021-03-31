@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { IGroup, IGroupUser } from '../models/group';
-import { LoggerService } from './logger.service';
+import { IGroup, IGroupUser } from '../../models/group';
+import { LoggerService } from '../../services/logger.service';
 
 @Injectable({
   providedIn: 'root',

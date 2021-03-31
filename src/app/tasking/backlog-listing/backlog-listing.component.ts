@@ -10,7 +10,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { ITask } from 'src/app/models/task';
-import { TaskService } from 'src/app/services/task.service';
+import { TaskService } from 'src/app/tasking/services/task.service';
 
 @Component({
   selector: 'app-backlog-listing',

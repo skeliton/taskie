@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { mergeMap, map, catchError, concatMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { TaskService } from 'src/app/services/task.service';
+import { TaskService } from 'src/app/tasking/services/task.service';
 import * as TaskGroupActions from './task-group-list.actions';
-import { GroupService } from 'src/app/services/group.service';
+import { GroupService } from 'src/app/task-group-list/services/group.service';
 
 @Injectable({ providedIn: 'root' })
 export class TaskGroupListEffects {

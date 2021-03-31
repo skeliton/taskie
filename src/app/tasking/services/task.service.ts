@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
-import { ITask } from '../models/task';
-import { LoggerService } from './logger.service';
+import { ITask } from '../../models/task';
+import { LoggerService } from '../../services/logger.service';
 
 @Injectable({
   providedIn: 'root',

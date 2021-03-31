@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, concatMap, map, mergeMap } from 'rxjs/operators';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/user/services/user.service';
 import * as UserActions from './user.actions';
 
 @Injectable({ providedIn: 'root' })

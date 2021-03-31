@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, concatMap, map, mergeMap } from 'rxjs/operators';
-import { TaskService } from 'src/app/services/task.service';
+import { TaskService } from 'src/app/tasking/services/task.service';
 import * as TaskActions from './task.actions';
 
 @Injectable({ providedIn: 'root' })

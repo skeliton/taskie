@@ -5,7 +5,7 @@ import { AuthService } from '@auth0/auth0-angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IGroup, IGroupUser, IUser } from 'src/app/models/group';
-import { GroupService } from 'src/app/services/group.service';
+import { GroupService } from 'src/app/task-group-list/services/group.service';
 //import { AuthService } from 'src/app/services/auth.service';
 import { LoggerService } from 'src/app/services/logger.service';
 import { State } from 'src/app/state/app.state';
