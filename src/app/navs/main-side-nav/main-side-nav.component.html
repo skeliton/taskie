@@ -1,7 +1,23 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav #sidenav mode="over" [(opened)]="opened" (opened)="events.push('open!')"
                (closed)="events.push('close!')">
-    Sidenav content
+               <div>
+    <button mat-button [matMenuTriggerFor]="belowMenu">
+      Templates
+      <mat-icon>expand_more</mat-icon>
+    </button>
+    <!-- #docregion sub-menu -->
+  <mat-menu #belowMenu="matMenu" yPosition="below">
+    <button mat-menu-item [matMenuTriggerFor]="habits">Habits</button>
+  </mat-menu>
+  <mat-menu #habits="matMenu">
+    <button mat-menu-item>Cooking</button>
+    <button mat-menu-item>Cleaning</button>
+    <button mat-menu-item>Sleep</button>
+    <button mat-menu-item>Study</button>
+    <button mat-menu-item>Mindfulness</button>
+  </mat-menu>
+</div>
   </mat-sidenav>
   <mat-sidenav-content>
     <app-group-side-nav #groupNav></app-group-side-nav>
