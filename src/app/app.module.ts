@@ -11,7 +11,6 @@ import { MainSideNavComponent } from './navs/main-side-nav/main-side-nav.compone
 import { GroupSideNavComponent } from './navs/group-side-nav/group-side-nav.component';
 import { UserModule } from './user/user.module';
 import { TaskGroupListModule } from './task-group-list/task-group-list.module';
-import { AuthModule } from '@auth0/auth0-angular';
 import { Constants } from './constants';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -20,6 +19,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { TestData } from './services/test-data';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
@@ -37,14 +37,11 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     TaskingModule,
     UserModule,
     TaskGroupListModule,
-    AuthModule.forRoot({
-      domain: Constants.stsAuthority,
-      clientId: Constants.clientId,
-    }),
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({name:"Taskie", maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent],

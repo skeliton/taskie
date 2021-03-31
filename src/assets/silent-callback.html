@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="/assets/js/oidc-client.min.js"></script>
+</head>
+<body>
+<script>
+      const stsSettings = {
+      authority: Constants.stsAuthority,
+      client_id: Constants.clientId,
+      scope: 'openid profile taskie-api',
+      response_type: 'code',
+      metadata: {
+        issuer: `${Constants.stsAuthority}`,
+        authorization_endpoint: `${Constants.stsAuthority}authorize?audience=taskie-api`,
+        jwks_uri: `${Constants.stsAuthority}.well-known/jwks.json`,
+        token_endpoint: `${Constants.stsAuthority}oauth/token`,
+        userinfo_endpoint: `${Constants.stsAuthority}userinfo`,
+        end_session_endpoint: `${Constants.stsAuthority}v2/logout?client_id=${
+          Constants.clientId
+        }&returnTo=${encodeURI(Constants.clientRoot)}home/signout-callback`,
+      },
+    };
+    new Oidc.UserManager(stsSettings).signInSilentCallback().catch(err=>{
+      console.log(err);
+    });
+</script>
+</body>
+</html>

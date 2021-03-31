@@ -3,12 +3,13 @@
                (closed)="events.push('close!')">
                <div>
     <button mat-button [matMenuTriggerFor]="templateMenu">
-      Templates
+      Life Tasks
       <mat-icon>expand_more</mat-icon>
     </button>
     <!-- #docregion sub-menu -->
   <mat-menu #templateMenu="matMenu" yPosition="below">
     <button mat-menu-item [matMenuTriggerFor]="habits">Habits</button>
+    <button mat-menu-item [matMenuTriggerFor]="goals">Goals</button>
   </mat-menu>
   <mat-menu #habits="matMenu">
     <button mat-menu-item>Cooking</button>
@@ -17,7 +18,38 @@
     <button mat-menu-item>Study</button>
     <button mat-menu-item>Mindfulness</button>
     <button mat-menu-item>Exercise</button>
+    <button mat-menu-item>Day Care</button>
   </mat-menu>
+  <mat-menu #goals="matMenu">
+    <button mat-menu-item>Savings</button>
+    <button mat-menu-item>Health</button>
+    <button mat-menu-item>Recipe List</button>
+  </mat-menu>
+</div>
+<div>
+  <button mat-button [matMenuTriggerFor]="taskie101Menu">
+    Taskie 101
+    <mat-icon>expand_more</mat-icon>
+  </button>
+  <!-- #docregion sub-menu -->
+<mat-menu #taskie101Menu="matMenu" yPosition="below">
+  <button mat-menu-item [matMenuTriggerFor]="gettingStarted">Getting Started</button>
+  <button mat-menu-item [matMenuTriggerFor]="advanced">Customizing for you</button>
+</mat-menu>
+<mat-menu #gettingStarted="matMenu">
+  <button mat-menu-item>Overview</button>
+  <button mat-menu-item>Tasks</button>
+  <button mat-menu-item>Groups</button>
+  <button mat-menu-item>Tasks</button>
+  <button mat-menu-item>Task List & Backlog</button>
+  <button mat-menu-item>Life Tasks</button>
+  <button mat-menu-item>Goals</button>
+  <button mat-menu-item>Schedule</button>
+</mat-menu>
+<mat-menu #advanced="matMenu">
+  <button mat-menu-item>Reoccuring Tasks</button>
+  <button mat-menu-item>Goals</button>
+</mat-menu>
 </div>
   </mat-sidenav>
   <mat-sidenav-content>

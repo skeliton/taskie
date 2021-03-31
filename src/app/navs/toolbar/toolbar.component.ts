@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IGroup, IGroupUser, IUser } from 'src/app/models/group';
@@ -10,6 +9,7 @@ import { GroupService } from 'src/app/task-group-list/services/group.service';
 import { LoggerService } from 'src/app/services/logger.service';
 import { State } from 'src/app/state/app.state';
 import { getCurrentUser } from 'src/app/user/state/user.reducer';
+import { AuthService } from 'src/app/user/services/auth.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -18,7 +18,7 @@ import { getCurrentUser } from 'src/app/user/state/user.reducer';
 })
 export class ToolbarComponent implements OnInit {
   title = 'Taskie';
-
+  isLoggedIn = false;
   user$: Observable<IUser> | undefined;
 
   constructor(
@@ -27,10 +27,17 @@ export class ToolbarComponent implements OnInit {
     private scheduleDialog: MatDialog,
     public auth: AuthService,
     private store: Store<State>
-  ) {}
+  ) {
+    this.auth.loginChanged.subscribe(loggedIn => {
+      this.isLoggedIn = loggedIn;
+    })
+  }
 
   ngOnInit(): void {
     this.loggerService.log('onInit');
+    this.auth.isLoggedIn().then(loggedIn => {
+      this.isLoggedIn = loggedIn;
+    })
     //this.user$ = this.store.select(getCurrentUser);
     //this.groups = this.userService.getGroupsByUserId(this.userId);
   }
@@ -46,9 +53,12 @@ export class ToolbarComponent implements OnInit {
   //   return '';
   // }
 
+  logIn(): void{
+    this.auth.login();
+  }
+
   logOut(): void {
     this.auth.logout();
-    //this.authService.logout();
     this.router.navigate(['/']);
   }
 
