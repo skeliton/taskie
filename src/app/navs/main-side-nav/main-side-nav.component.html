@@ -51,6 +51,21 @@
   <button mat-menu-item>Goals</button>
 </mat-menu>
 </div>
+
+<div>
+  <button mat-button [matMenuTriggerFor]="integrateWithUsMenu">
+    Integrate With Taskie
+    <mat-icon>expand_more</mat-icon>
+  </button>
+  <!-- #docregion sub-menu -->
+<mat-menu #integrateWithUsMenu="matMenu" yPosition="below">
+  <button mat-menu-item [matMenuTriggerFor]="gettingStartedIntegrating">Getting Started</button>
+</mat-menu>
+<mat-menu #gettingStartedIntegrating="matMenu">
+  <button mat-menu-item>API</button>
+  <button mat-menu-item>Setup</button>
+</mat-menu>
+</div>
   </mat-sidenav>
   <mat-sidenav-content>
     <app-group-side-nav #groupNav></app-group-side-nav>

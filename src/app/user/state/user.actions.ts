@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { IUser } from 'src/app/models/group';
 
+
 export const loadCurrentUserById = createAction(
   '[User] LoadById',
   props<{ userId: number }>()

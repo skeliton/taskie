@@ -6,7 +6,7 @@ import { TaskComponent } from './task/task.component';
 import { BacklogListingComponent } from './backlog-listing/backlog-listing.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { taskReducer } from './state/task.reducer';
+import { coreReducer } from 'src/app/state/core.reducer';
 import { TaskEffects } from './state/task.effects';
 
 @NgModule({
@@ -18,7 +18,7 @@ import { TaskEffects } from './state/task.effects';
   imports: [
     SharedModule,
     TaskingRoutingModule,
-    StoreModule.forFeature('tasking', taskReducer),
+    StoreModule.forFeature('core', coreReducer),
     EffectsModule.forFeature([TaskEffects]),
   ],
 })

@@ -12,7 +12,7 @@ import {
   getGroupFilterText,
   getGroups,
   getShowMerged,
-} from './state/task-group-list.reducer';
+} from 'src/app/state/core.reducer';
 
 @Component({
   selector: 'app-task-group-list',
@@ -53,7 +53,7 @@ export class TaskGroupListComponent implements OnInit, OnDestroy {
 
     this.filteredGroups$ = this.store.select(getFilteredGroups);
 
-    this.store.dispatch(TaskGroupActions.loadTaskGroups());
+    //this.store.dispatch(TaskGroupActions.loadTaskGroups());
   }
 
   ngOnDestroy(): void {

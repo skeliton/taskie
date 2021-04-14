@@ -1,5 +1,5 @@
 <mat-toolbar color='primary' class="toolbar">
-  <span *ngIf="isLoggedIn">
+  <span *ngIf="(user$ | async) !== null">
     <button  mat-icon-button (click) = "mainSideNav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
@@ -8,7 +8,7 @@
  <a routerLink='/home'>
   <img class="icon" width="40" alt="Taskie Logo" src="../faviconTaskie.png"/>
 </a>
- <span *ngIf="isLoggedIn; else loggedOutTitle">
+ <span *ngIf="(user$ | async) !== null; else loggedOutTitle">
   <button mat-button [matMenuTriggerFor]="belowMenu">
     {{title}}
     <mat-icon >expand_more</mat-icon>
@@ -28,7 +28,7 @@
   {{title}}
 </ng-template>
  <span class="spacer"></span>
- <ng-container *ngIf="isLoggedIn; else loggedOut">
+ <ng-container *ngIf="(user$ | async) !== null; else loggedOut">
   <button mat-button color="accent" (click)="logOut()">
     Log out
   </button>
@@ -45,7 +45,7 @@
      </mat-option>
    </mat-select>
  </mat-form-field> -->
- <span *ngIf="isLoggedIn">
+ <span *ngIf="(user$ | async) !== null">
   <button mat-icon-button (click) = "mainSideNav.toggleGroupNav()">
     <mat-icon>menu</mat-icon>
   </button>

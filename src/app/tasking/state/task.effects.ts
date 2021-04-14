@@ -21,6 +21,18 @@ export class TaskEffects {
     );
   });
 
+  loadTasksByUserId$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TaskActions.loadTasksByUserId),
+      mergeMap((action) =>
+        this.taskService.getTasksByUserId(action.userId).pipe(
+          map((tasks) => TaskActions.loadTasksSuccess({ tasks })),
+          catchError((error) => of(TaskActions.loadTasksFailure({ error })))
+        )
+      )
+    );
+  });
+
   loadTasks$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(TaskActions.loadTasks),

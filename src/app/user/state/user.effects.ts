@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { of } from 'rxjs';
-import { catchError, concatMap, map, mergeMap } from 'rxjs/operators';
+import { combineLatest, of } from 'rxjs';
+import { catchError, concatMap, map, mergeMap, tap } from 'rxjs/operators';
 import { UserService } from 'src/app/user/services/user.service';
 import * as UserActions from './user.actions';
+import * as GroupActions from 'src/app/task-group-list/state/task-group-list.actions';
+import * as TaskActions from 'src/app/tasking/state/task.actions';
 
 @Injectable({ providedIn: 'root' })
 export class UserEffects {
@@ -12,11 +14,32 @@ export class UserEffects {
   loadCurrentUserById$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(UserActions.loadCurrentUserById),
-      mergeMap((action) =>
-        this.userService.getUsersById(action.userId).pipe(
+      mergeMap((action) => {
+        return this.userService.getUsersById(action.userId).pipe(
           map((user) => UserActions.loadUserByIdSuccess({ user })),
+          // tap((user) => console.log('DEBUG: ' + JSON.stringify(user))),
+          // map((user) => GroupActions.loadTaskGroupsByUserId({userId: user.user.id})),
+          // tap((user) => console.log('DEBUG: ' + JSON.stringify(user))),
           catchError((error) => of(UserActions.loadUsersFailure({ error })))
-        )
+        );
+      })
+    );
+  });
+
+  loadGroupsForSuccessfulUser$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(UserActions.loadUserByIdSuccess),
+      map((user) =>
+        GroupActions.loadTaskGroupsByUserId({ userId: user.user.id })
+      )
+    );
+  });
+
+  loadTasksForSuccessfulUser$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(UserActions.loadUserByIdSuccess),
+      map((user) =>
+        TaskActions.loadTasksByUserId({ userId: user.user.id })
       )
     );
   });

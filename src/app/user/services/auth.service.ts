@@ -1,9 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { SignoutResponse, User, UserManager } from 'oidc-client';
 import { Subject } from 'rxjs';
 import { Constants } from 'src/app/constants';
 import { AuthContext } from 'src/app/models/authModels';
+import { State } from 'src/app/state/app.state';
+import { clearCurrentUser, loadCurrentUserById } from '../state/user.actions';
+
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +20,7 @@ export class AuthService {
   loginChanged = this._loginChangedSubject.asObservable();
   authContext?: AuthContext;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private store: Store<State>) {
     const stsSettings = {
       authority: Constants.stsAuthority,
       client_id: Constants.clientId,
@@ -70,10 +74,15 @@ export class AuthService {
 
   completeLogin(): Promise<User> {
     return this._userManager.signinRedirectCallback().then((user) => {
-      this._user = user;
+      this.loadProfile(user);
       this._loginChangedSubject.next(!!user && !user.expired);
       return user;
     });
+  }
+
+  loadProfile(user: User): void {
+    this._user = user;
+    this.store.dispatch(loadCurrentUserById({ userId: 1 }));
   }
 
   logout(): void {
@@ -81,17 +90,17 @@ export class AuthService {
   }
 
   completeLogout(): Promise<SignoutResponse> {
+    this.store.dispatch(clearCurrentUser());
     this._user = null;
     this._loginChangedSubject.next(false);
     return this._userManager.signoutRedirectCallback().then();
   }
 
   getAccessToken() {
-    return this._userManager.getUser().then(user => {
+    return this._userManager.getUser().then((user) => {
       if (!!user && !user.expired) {
         return user.access_token;
-      }
-      else {
+      } else {
         return null;
       }
     });

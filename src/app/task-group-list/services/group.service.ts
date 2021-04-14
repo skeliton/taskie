@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, filter, map, tap } from 'rxjs/operators';
 import { IGroup, IGroupUser } from '../../models/group';
 import { LoggerService } from '../../services/logger.service';
 
@@ -29,6 +29,14 @@ export class GroupService {
         tap((data) => console.log('getGroup: ' + id)),
         catchError(this.loggerService.handleError)
       );
+  }
+
+  getGroupsByUserId(id: number): Observable<IGroup[]> {
+    return this.http.get<IGroup[]>(this.url).pipe(
+      map((data) => data.filter(group => group.ownerUserId === id)),
+      tap((data) => console.log(JSON.stringify(data))),
+      catchError(this.loggerService.handleError)
+    );
   }
 
   // getGroupById(id: number): IGroup {

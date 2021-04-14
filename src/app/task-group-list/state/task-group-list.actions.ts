@@ -25,6 +25,11 @@ export const initializeCurrentTaskGroup = createAction(
 
 export const loadTaskGroups = createAction('[TaskGroupList] Load');
 
+export const loadTaskGroupsByUserId = createAction(
+  '[TaskGroupList] Load Groups By User Id',
+  props<{ userId: number }>()
+);
+
 export const loadTaskGroupsSuccess = createAction(
   '[TaskGroupList] Load Success',
   props<{ groups: IGroup[] }>()

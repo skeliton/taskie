@@ -5,10 +5,9 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IGroup, IGroupUser, IUser } from 'src/app/models/group';
 import { GroupService } from 'src/app/task-group-list/services/group.service';
-//import { AuthService } from 'src/app/services/auth.service';
 import { LoggerService } from 'src/app/services/logger.service';
 import { State } from 'src/app/state/app.state';
-import { getCurrentUser } from 'src/app/user/state/user.reducer';
+import { getCurrentUser } from 'src/app/state/core.reducer';
 import { AuthService } from 'src/app/user/services/auth.service';
 
 @Component({
@@ -18,8 +17,7 @@ import { AuthService } from 'src/app/user/services/auth.service';
 })
 export class ToolbarComponent implements OnInit {
   title = 'Taskie';
-  isLoggedIn = false;
-  user$: Observable<IUser> | undefined;
+  user$: Observable<IUser | null> | undefined;
 
   constructor(
     private loggerService: LoggerService,
@@ -28,32 +26,13 @@ export class ToolbarComponent implements OnInit {
     public auth: AuthService,
     private store: Store<State>
   ) {
-    this.auth.loginChanged.subscribe(loggedIn => {
-      this.isLoggedIn = loggedIn;
-    })
   }
 
   ngOnInit(): void {
-    this.loggerService.log('onInit');
-    this.auth.isLoggedIn().then(loggedIn => {
-      this.isLoggedIn = loggedIn;
-    })
-    //this.user$ = this.store.select(getCurrentUser);
-    //this.groups = this.userService.getGroupsByUserId(this.userId);
+    this.user$ = this.store.select(getCurrentUser);
   }
 
-  // get isLoggedIn(): boolean {
-  //   return this.auth.isAuthenticated$ | async;
-  // }
-
-  // get userName(): string {
-  //   if (this.authService.currentUser) {
-  //     return this.authService.currentUser.userName;
-  //   }
-  //   return '';
-  // }
-
-  logIn(): void{
+  logIn(): void {
     this.auth.login();
   }
 

@@ -20,6 +20,7 @@ import { TestData } from './services/test-data';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { HomeModule } from './home/home.module';
+import { AppStateModule } from './state/app-state.module';
 
 @NgModule({
   declarations: [
@@ -38,10 +39,17 @@ import { HomeModule } from './home/home.module';
     UserModule,
     TaskGroupListModule,
     StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({name:"Taskie", maxAge: 25, logOnly: environment.production }),
+    StoreDevtoolsModule.instrument({
+      name: 'Taskie',
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
     EffectsModule.forRoot([]),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    HomeModule
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
+    HomeModule,
+    AppStateModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

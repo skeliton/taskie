@@ -5,6 +5,12 @@ export const loadCurrentTaskById = createAction(
   '[Task] LoadById',
   props<{ taskId: number }>()
 );
+
+export const loadTasksByUserId = createAction(
+  '[Task] LoadById',
+  props<{ userId: number }>()
+);
+
 export const initializeCurrentTask = createAction(
   '[Task] Initialize Current Task'
 );

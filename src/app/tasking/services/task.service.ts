@@ -2,28 +2,46 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of, throwError } from 'rxjs';
-import { catchError, tap, map } from 'rxjs/operators';
-import { ITask } from '../../models/task';
+import { catchError, tap, map, mergeMap } from 'rxjs/operators';
+import { IGroupTask, ITask } from '../../models/task';
 import { LoggerService } from '../../services/logger.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskService {
-  private url = 'api/tasks';
+  private urlTasks = 'api/tasks';
+  private urlGroupTasks = 'api/groupTasks';
 
   constructor(private loggerService: LoggerService, private http: HttpClient) {}
 
   getTasks(): Observable<ITask[]> {
-    return this.http.get<ITask[]>(this.url).pipe(
+    return this.http.get<ITask[]>(this.urlTasks).pipe(
       tap((data) => console.log(JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
 
+  getTasksByUserId(id: number): Observable<ITask[]> {
+    return this.http.get<IGroupTask[]>(this.urlGroupTasks).pipe(
+      mergeMap((dataMap) => {
+        let gt = dataMap.filter((gt) => gt.creatingUserId === id);
+        return this.http.get<ITask[]>(this.urlTasks).pipe(
+          map((data) =>
+            data.filter((task) => gt.find((x) => x.creatingUserId == task.id))
+          ),
+          tap((data) => console.log(JSON.stringify(data))),
+          catchError(this.loggerService.handleError)
+        );
+      }),
+      tap((data) => console.log(JSON.stringify(data))),
+      catchError(this.loggerService.handleError)
+    );
+  }
+
   getTasksById(id: number): Observable<ITask> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.url}/${id}`;
+    const url = `${this.urlTasks}/${id}`;
     return this.http
       .get<ITask>(url, { headers })
       .pipe(
@@ -37,7 +55,7 @@ export class TaskService {
     // ITask Id must be null for the Web API to assign an Id
     const newTask = { ...task, id: null };
     return this.http
-      .post<ITask>(this.url, newTask, { headers })
+      .post<ITask>(this.urlTasks, newTask, { headers })
       .pipe(
         tap((data) => console.log('createITask: ' + JSON.stringify(data))),
         catchError(this.handleError)
@@ -46,7 +64,7 @@ export class TaskService {
 
   deleteTask(id: number): Observable<{}> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.url}/${id}`;
+    const url = `${this.urlTasks}/${id}`;
     return this.http
       .delete<ITask>(url, { headers })
       .pipe(
@@ -57,7 +75,7 @@ export class TaskService {
 
   updateTask(task: ITask): Observable<ITask> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.url}/${task.id}`;
+    const url = `${this.urlTasks}/${task.id}`;
     return this.http
       .put<ITask>(url, task, { headers })
       .pipe(

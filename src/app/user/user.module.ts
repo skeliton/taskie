@@ -8,7 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { StoreModule } from '@ngrx/store';
 import { UserEffects } from './state/user.effects';
 import { EffectsModule } from '@ngrx/effects';
-import { userReducer } from './state/user.reducer';
+import { coreReducer } from 'src/app/state/core.reducer';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { userReducer } from './state/user.reducer';
     SharedModule,
     CommonModule,
     UserRoutingModule,
-    StoreModule.forFeature('user', userReducer),
+    StoreModule.forFeature('core', coreReducer),
     EffectsModule.forFeature([UserEffects]),
   ],
 })
